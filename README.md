@@ -106,10 +106,10 @@ We tested whether map side is associated with winning.
 
 - **Null hypothesis (H₀):** In the population of 2022 professional games, a team's win probability is the same regardless of side; the observed Blue–Red gap is due to chance.
 - **Alternative hypothesis (H₁):** Blue-side and Red-side teams have different win probabilities (two-sided — we did not pre-commit to a direction).
-- **Test statistic:** the absolute difference in win rates, **T = | Blue win rate − Red win rate |**. With a binary outcome and two groups this equals the Total Variation Distance between the side-conditional outcome distributions, and it is the most interpretable summary of a "side advantage" for a reader.
+- **Test statistic:** **T**, the **absolute difference in win rates** between the two sides (the Blue win rate minus the Red win rate, taken in absolute value). With a binary outcome and two groups this equals the Total Variation Distance between the side-conditional outcome distributions, and it is the most interpretable summary of a "side advantage" for a reader.
 - **Significance level:** α = 0.05.
 
-We ran a **permutation test** that shuffles the win/loss outcomes across all 25,058 team-rows and recomputes **T** each time (10,000 shuffles), simulating a world where side and result are unrelated. The observed statistic is **T = | 0.5248 − 0.4752 | = 0.0496**, and **0 of the 10,000 permutations** produced a gap that large, giving a p-value of approximately **0 (p < 0.0001)**.
+We ran a **permutation test** that shuffles the win/loss outcomes across all 25,058 team-rows and recomputes **T** each time (10,000 shuffles), simulating a world where side and result are unrelated. The observed statistic is **T = 0.0496** — the absolute difference between the Blue win rate (0.5248) and the Red win rate (0.4752) — and **0 of the 10,000 permutations** produced a gap that large, giving a p-value of approximately **0 (p < 0.0001)**.
 
 <iframe src="assets/hypothesis_null.html" width="820" height="440" frameborder="0"></iframe>
 
@@ -166,7 +166,7 @@ Finally, we audited whether the final model works **as well for the biggest regi
 - **Group X — "major":** games in the four marquee leagues (`LCK`, `LPL`, `LEC`, `LCS`).
 - **Group Y — "other":** games in every other league.
 - **Evaluation metric:** **precision** (of the games the model calls a win, how many truly were), which is comparable across groups of very different sizes; we also report recall.
-- **Test statistic:** the absolute difference in precision, **| precision(major) − precision(other) |**.
+- **Test statistic:** the **absolute difference in precision** between the two groups (the precision on major-league games minus the precision on other games, taken in absolute value).
 - **Null hypothesis (H₀):** the model is fair — precision is the same for both groups, and any gap is chance.
 - **Alternative hypothesis (H₁):** the model's precision differs between the two groups.
 - **Significance level:** α = 0.05.
